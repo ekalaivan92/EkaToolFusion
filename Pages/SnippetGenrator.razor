@@ -4,133 +4,155 @@
 
 <div class="row">
     <div class="col-md-7 border rounded p-2">
-        <div class="row g-1">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-label" for="titleInput">Title</label>
-                    <input type="text" class="form-control" required id="titleInput" placeholder="Title for the snippet"
-                        autofocus maxlength="100">
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-label" for="authorInput">Author</label>
-                    <input type="text" class="form-control" id="authorInput" placeholder="Author Name" maxlength="50" />
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-label" for="DescriptionInput">Description</label>
-                    <input type="text" class="form-control" id="DescriptionInput"
-                        placeholder="Description for the snippet" autofocus maxlength="250">
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-label" for="helpURLInput">HelpURL</label>
-                    <input type="text" class="form-control" id="helpURLInput" placeholder="Help URL for the snippet"
-                        autofocus maxlength="250">
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-label" for="keywordsInput">Keywords</label>
-                    <input type="text" class="form-control" id="keywordsInput" placeholder="Comma separated keywords"
-                        autofocus maxlength="250">
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="">
-                    <label class="form-label" for="languageSelect">Language</label>
-                    <select class="form-control" id="languageSelect">
-                        <option value="C#">C#</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="">
-                    <label class="form-label" for="typeSelect">Type</label>
-                    <select class="form-control" id="typeSelect">
-                        <option value="Expansion">Expansion</option>
-                        <option value="SurroundsWith">Surrounds With</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="">
-                    <label class="form-label" for="shortcutInput">Shortcut</label>
-                    <input type="text" class="form-control" id="shortcutInput"
-                        placeholder="Shortcut to replaced by code" />
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="">
-                    <label class="form-label" for="refInput">References</label>
-                    <textarea class="form-control" id="refInput" rows="3"
-                        placeholder="To refer dll files, Place each one in new line without any annotations"></textarea>
-                </div>
-
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="DLL Reference" />
-                    <input type="text" class="form-control" placeholder="DLL Reference Help URL" />
-                    <input type="button" class="btn btn-primary" Value="+" />
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="">
-                    <label class="form-label" for="importInput">Imports</label>
-                    <textarea class="form-control" id="importInput" rows="3"
-                        placeholder="To import namespaces, Place each one in new line without any annotations"></textarea>
-                </div>
-
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Namespace to import" />
-                    <input type="button" class="btn btn-primary" Value="+" />
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="">
-                    <label class="form-label" for="declarationInput">Declarations</label>
-                    <textarea class="form-control" id="declarationInput" rows="3"
-                        placeholder="To use replacable names in code, Place each one in new line without any annotations"></textarea>
-                </div>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Identifier for placeholder" />
-                    <input type="text" class="form-control" placeholder="Tooltip for placeholder" />
-                    <input type="text" class="form-control" placeholder="Function name for placeholder" />
-                    <div class="input-group-text">
-                        <input type="checkbox" class="form-check-input mt-0" placeholder="Editable" title="Is this placehoder editable" />
-                    </div>
-                    <input type="button" class="btn btn-primary" Value="+" />
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="">
-                    <label class="form-label" for="importInput">Code</label>
-                    <textarea class="form-control" rows="4" required
-                        placeholder="Code block to be replaced by"></textarea>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="row justify-content-end">
-                    <div class="col-auto">
-                        <input type="button" class="btn btn-success pull-right" value="Generate" />
+        <form method="post" @onsubmit="GenerateSnippet">
+            <input type="hidden" @bind="Payload.Body.CodeBlock.Kind" />
+            <div class="row g-1">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="titleInput">Title</label>
+                        <input type="text" class="form-control" required id="titleInput"
+                            placeholder="Title for the snippet" autofocus maxlength="100"
+                            @bind-value="Payload.Header.Title">
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <div class="">
+                        <label class="form-label" for="shortcutInput">Shortcut</label>
+                        <input type="text" class="form-control" id="shortcutInput" required
+                            placeholder="Shortcut to replaced by code" @bind-value="Payload.Header.Shortcut" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="authorInput">Author</label>
+                        <input type="text" class="form-control" id="authorInput" placeholder="Author Name"
+                            maxlength="50" @bind-value="Payload.Header.Author" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="DescriptionInput">Description</label>
+                        <input type="text" class="form-control" id="DescriptionInput"
+                            placeholder="Description for the snippet" autofocus maxlength="250"
+                            @bind-value="Payload.Header.Description">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="helpURLInput">Help URL</label>
+                        <input type="text" class="form-control" id="helpURLInput" placeholder="Help URL for the snippet"
+                            autofocus maxlength="250" @bind-value="Payload.Header.HelpURL">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="keywordsInput">Keywords</label>
+                        <input type="text" class="form-control" id="keywordsInput"
+                            placeholder="Comma separated keywords" autofocus maxlength="250" 
+                            @bind-value="Payload.Header.KeywordsForDisplay">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="">
+                        <label class="form-label" for="languageSelect">Language</label>
+                        <select class="form-control" id="languageSelect" required @bind="Payload.Body.CodeBlock.Language">
+                            <option selected disabled hidden></option>
+                            <option value="C#">C#</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="">
+                        <label class="form-label" for="typeSelect">Type</label>
+                        <select class="form-control" id="typeSelect" @bind="Payload.Header.SnipperType">
+                            <option value="Expansion">Expansion</option>
+                            <option value="SurroundsWith">Surrounds With</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="">
+                        <label class="form-label" for="refInput">References</label>
+                        <textarea class="form-control" id="refInput" rows="3"
+                            placeholder="To refer dll files, Place each one in new line without any annotations"></textarea>
+                    </div>
+
+                    <form>
+                        <div class="input-group">
+                            <input type="text" required class="form-control" placeholder="DLL Reference"
+                                @bind="ReferencePayload.Assembly" />
+                            <input type="text" required class="form-control" placeholder="DLL Reference Help URL"
+                                @bind="ReferencePayload.HelpURL" />
+                            <input type="submit" class="btn btn-primary" Value="+" />
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="">
+                        <label class="form-label" for="importInput">Imports</label>
+                        <textarea class="form-control" id="importInput" rows="3"
+                            placeholder="To import namespaces, Place each one in new line without any annotations"></textarea>
+                    </div>
+
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" required placeholder="Namespace to import"
+                                @bind="ImportPayload.Namespace" />
+                            <input type="submit" class="btn btn-primary" Value="+" />
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="">
+                        <label class="form-label" for="declarationInput">Declarations</label>
+                        <textarea class="form-control" id="declarationInput" rows="3"
+                            placeholder="To use replacable names in code, Place each one in new line without any annotations"></textarea>
+                    </div>
+
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" required placeholder="Identifier for placeholder"
+                                @bind="DeclarationPayload.ID" />
+                            <input type="text" class="form-control" placeholder="Tooltip for placeholder"
+                                @bind="DeclarationPayload.Tooltip" />
+                            <input type="text" class="form-control" placeholder="Function name for placeholder"
+                                @bind="DeclarationPayload.Function" />
+                            <div class="input-group-text">
+                                <input type="checkbox" class="form-check-input mt-0" placeholder="Editable"
+                                    title="Is this placehoder editable" @bind="DeclarationPayload.Editable" />
+                            </div>
+                            <input type="submit" class="btn btn-primary" Value="+" />
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="">
+                        <label class="form-label" for="codeInput">Code</label>
+                        <textarea class="form-control" rows="4" required placeholder="Code block to be replaced by"
+                            @bind="Payload.Body.CodeBlock.Code"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <input type="submit" class="btn btn-success pull-right" value="Generate" />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="col-md-5 border rounded p-2">
         <div class="form-floating">

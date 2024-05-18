@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace EkaToolFusion.Services.SnippetGenrator.Models;
 
 public enum SnippetType
@@ -15,6 +17,9 @@ public class SnippetInputHeaderPayload
     public SnippetType SnipperType { get; set; }
     public string[] Keywords { get; set; }
     public string Shortcut { get; set; }
+    
+    [JsonIgnore]
+    public string KeywordsForDisplay { get => string.Join(",",  Keywords ?? []); set => Keywords = value.Split(",").Select(x => x.Trim()).ToArray(); }
 }
 
 public class SnippetReferenceInputPayload
@@ -40,8 +45,8 @@ public class SnippetDeclarationInputPayload
 public class SnippetCodeInputPayload
 {
     public string Language { get; set; }
-    public string Kind { get; set; }
-    public string Delimiter { get; set; }
+    public string Kind { get; set; } = "cData";
+    public string Delimiter { get; set; } = "$";
     public string Code { get; set; }
 }
 
@@ -52,10 +57,24 @@ public class SnippetInputBodyPayload
     public IEnumerable<SnippetImportInputPayload> Imports { get; set; }
     public IEnumerable<SnippetDeclarationInputPayload> Declarations { get; set; }
     public SnippetCodeInputPayload CodeBlock { get; set; }
+
+    public SnippetInputBodyPayload()
+    {
+        References = [];
+        Imports = [];
+        Declarations = [];
+        CodeBlock = new();
+    }
 }
 
 public class SnippetInputPayload
 {
     public SnippetInputHeaderPayload Header { get; set; }
     public SnippetInputBodyPayload Body { get; set; }
+
+    public SnippetInputPayload()
+    {
+        Header = new();
+        Body = new();
+    }
 }
