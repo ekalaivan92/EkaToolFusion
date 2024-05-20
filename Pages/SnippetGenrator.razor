@@ -88,8 +88,13 @@
                 <div class="col-md-6 mb-1">
                     <div class="">
                         <label class="form-label" for="refInput">References</label>
-                        <table class="table table-striped table-sm border mb-0"
-                            style="height: 125PX;">
+                        <table class="table table-striped table-sm mb-0" style="height: 125PX;">
+                            <thead>
+                                <tr style="py-0 w-100">
+                                    <td class="py-0 w-50">Assembly Name</td>
+                                    <td class="py-0 w-50">HelpURL</td>
+                                </tr>
+                            </thead>
                             <tbody>
                                 @foreach (var reference in Payload.Body.References)
                                 {
@@ -123,7 +128,12 @@
                 <div class="col-md-6 mb-1">
                     <div class="">
                         <label class="form-label" for="importInput">Imports</label>
-                        <table class="table table-striped table-sm border mb-0" style="height: 125px;">
+                        <table class="table table-striped table-sm mb-0" style="height: 125px;">
+                            <thead>
+                                <tr style="py-0 w-100">
+                                    <td class="py-0 w-50">Namespace</td>
+                                </tr>
+                            </thead>
                             <tbody>
                                 @foreach (var reference in Payload.Body.Imports)
                                 {
@@ -153,13 +163,12 @@
                 <div class="col-md-12 mb-1">
                     <div class="">
                         <label class="form-label" for="declarationInput">Placeholders / Declarations</label>
-                        <table class="table table-striped table-sm border mb-0"
-                            style="height: 125px;">
+                        <table class="table table-striped table-sm mb-0" style="height: 125px;">
                             <thead>
                                 <tr style="py-0 w-100">
                                     <td class="py-0 w-25">Identifier</td>
                                     <td class="py-0 w-25">Default Name</td>
-                                    <td class="py-0 w-25">Tooltip</td>
+                                    <td class="py-0 w-50">Tooltip</td>
                                     <td class="py-0 w-25">Function</td>
                                     <td class="py-0 w-50">Editable</td>
                                 </tr>
@@ -225,11 +234,16 @@
         </form>
     </div>
     <div class="col-md-4 border rounded p-2">
-        <div class="form-floating">
-            <textarea class="form-control" style="height: calc(100vh - 80px); resize: none;" disabled readonly
-                resize="false" @bind="CodeSnippet">
-            </textarea>
-            <label for="floatingInput">Generated Snippet Preview</label>
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <textarea class="form-control" style="height: calc(100vh - 160px); resize: none;" disabled readonly
+                        resize="false" @bind="CodeSnippet">
+                </textarea>
+                    <label for="floatingInput">Generated Snippet Preview</label>
+                </div>
+            </div>
         </div>
     </div>
 </div>
