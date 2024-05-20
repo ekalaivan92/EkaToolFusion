@@ -2,6 +2,13 @@ using System.Text.Json.Serialization;
 
 namespace EkaToolFusion.Services.SnippetGenrator.Models;
 
+public enum PredefinedSnippetType
+{
+    Int = 1,
+    NewtonSoftJson = 2,
+
+}
+
 public enum SnippetType
 {
     Expansion = 1,

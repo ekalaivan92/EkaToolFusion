@@ -1,5 +1,6 @@
 using System.Text.Json;
 using EkaToolFusion.Services.SnippetGenrator.Models;
+using EkaToolFusion.Services.SnippetGenrators.Processors;
 using EkaToolFusion.Services.Utilities;
 using Microsoft.AspNetCore.Components;
 
@@ -55,5 +56,13 @@ public partial class SnippetGenrator : ComponentBase
         }
 
         ImportPayload = new();
+    }
+
+    private void OnPreloadSelect(ChangeEventArgs eventArgs)
+    {
+        var selectedType = Enum.Parse<PredefinedSnippetType>((string)eventArgs.Value);
+        Payload = PredefinedSnippetGenerators.Generators[selectedType];
+
+        GenerateSnippet();
     }
 }
