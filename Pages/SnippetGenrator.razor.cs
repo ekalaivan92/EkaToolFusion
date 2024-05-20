@@ -1,5 +1,6 @@
 using System.Text.Json;
 using EkaToolFusion.Services.SnippetGenrator.Models;
+using EkaToolFusion.Services.Utilities;
 using Microsoft.AspNetCore.Components;
 
 namespace EkaToolFusion.Pages;
@@ -14,9 +15,45 @@ public partial class SnippetGenrator : ComponentBase
 
     private void GenerateSnippet()
     {
-        CodeSnippet = JsonSerializer.Serialize(Payload, new JsonSerializerOptions { WriteIndented = true });
-        CodeSnippet += JsonSerializer.Serialize(ReferencePayload, new JsonSerializerOptions { WriteIndented = true });
-        CodeSnippet += JsonSerializer.Serialize(ImportPayload, new JsonSerializerOptions { WriteIndented = true });
-        CodeSnippet += JsonSerializer.Serialize(DeclarationPayload, new JsonSerializerOptions { WriteIndented = true });
+        CodeSnippet = SnippetUtility.Generate(Payload);
+    }
+
+    private void UpdateDeclaration()
+    {
+        DeclarationPayload.ID = DeclarationPayload.ID.Trim();
+
+        var hasEntry = Payload.Body.Declarations.Any(x => x.ID.Equals(DeclarationPayload.ID, StringComparison.InvariantCultureIgnoreCase));
+        if (!hasEntry)
+        {
+            Payload.Body.Declarations = Payload.Body.Declarations.Append(DeclarationPayload);
+        }
+
+        DeclarationPayload = new();
+    }
+
+    private void UpdateReference()
+    {
+        ReferencePayload.Assembly = ReferencePayload.Assembly.Trim();
+        
+        var hasEntry = Payload.Body.References.Any(x => x.Assembly.Equals(ReferencePayload.Assembly, StringComparison.InvariantCultureIgnoreCase));
+        if (!hasEntry)
+        {
+            Payload.Body.References = Payload.Body.References.Append(ReferencePayload);
+        }
+
+        ReferencePayload = new();
+    }
+
+    private void UpdateImport()
+    {
+        ImportPayload.Namespace = ImportPayload.Namespace.Trim();
+
+        var hasEntry = Payload.Body.Imports.Any(x => x.Namespace.Equals(ImportPayload.Namespace, StringComparison.InvariantCultureIgnoreCase));
+        if (!hasEntry)
+        {
+            Payload.Body.Imports = Payload.Body.Imports.Append(ImportPayload);
+        }
+
+        ImportPayload = new();
     }
 }

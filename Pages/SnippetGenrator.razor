@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+@using Services.SnippetGenrator.Models; 
+
 <PageTitle>Eka - Advanced Visual Studio Snippet Generator</PageTitle>
 
 <div class="row">
@@ -64,6 +66,7 @@
                         <select class="form-control" id="languageSelect" required @bind="Payload.Body.CodeBlock.Language">
                             <option selected disabled hidden></option>
                             <option value="C#">C#</option>
+                            @* <option value="VB">VB</option> *@
                         </select>
                     </div>
                 </div>
@@ -72,8 +75,11 @@
                     <div class="">
                         <label class="form-label" for="typeSelect">Type</label>
                         <select class="form-control" id="typeSelect" @bind="Payload.Header.SnipperType">
-                            <option value="Expansion">Expansion</option>
-                            <option value="SurroundsWith">Surrounds With</option>
+                            <option selected disabled hidden></option>
+                            @foreach (var gender in Enum.GetValues(typeof(SnippetType)))
+                            {
+                                <option value="@gender">@gender</option>
+                            }
                         </select>
                     </div>
                 </div>
@@ -81,15 +87,20 @@
                 <div class="col-md-6">
                     <div class="">
                         <label class="form-label" for="refInput">References</label>
-                        <textarea class="form-control" id="refInput" rows="3"
-                            placeholder="To refer dll files, Place each one in new line without any annotations"></textarea>
+                        <textarea class="form-control" id="refInput" rows="3" readonly disabled
+                            placeholder="To refer dll files, Place each one in new line without any annotations">
+                            @foreach(var reference in Payload.Body.References)
+                            {
+                                @(string.Join(" - ", reference.Assembly, reference.HelpURL) + Environment.NewLine);
+                            }
+                        </textarea>
                     </div>
 
-                    <form>
+                    <form @onsubmit="UpdateReference">
                         <div class="input-group">
                             <input type="text" required class="form-control" placeholder="DLL Reference"
                                 @bind="ReferencePayload.Assembly" />
-                            <input type="text" required class="form-control" placeholder="DLL Reference Help URL"
+                            <input type="text" class="form-control" placeholder="DLL Reference Help URL"
                                 @bind="ReferencePayload.HelpURL" />
                             <input type="submit" class="btn btn-primary" Value="+" />
                         </div>
@@ -99,11 +110,16 @@
                 <div class="col-md-6">
                     <div class="">
                         <label class="form-label" for="importInput">Imports</label>
-                        <textarea class="form-control" id="importInput" rows="3"
-                            placeholder="To import namespaces, Place each one in new line without any annotations"></textarea>
+                        <textarea class="form-control" id="importInput" rows="3" disabled readonly
+                            placeholder="To import namespaces, Place each one in new line without any annotations">
+                            @foreach(var import in Payload.Body.Imports)
+                            {
+                                @(string.Join(' ', import.Namespace, Environment.NewLine));
+                            }
+                        </textarea>
                     </div>
 
-                    <form>
+                    <form @onsubmit="UpdateImport">
                         <div class="input-group">
                             <input type="text" class="form-control" required placeholder="Namespace to import"
                                 @bind="ImportPayload.Namespace" />
@@ -115,11 +131,16 @@
                 <div class="col-md-12">
                     <div class="">
                         <label class="form-label" for="declarationInput">Declarations</label>
-                        <textarea class="form-control" id="declarationInput" rows="3"
-                            placeholder="To use replacable names in code, Place each one in new line without any annotations"></textarea>
+                        <textarea class="form-control" id="declarationInput" rows="3" disabled readonly
+                            placeholder="To use replacable names in code, Place each one in new line without any annotations">
+                            @foreach(var import in Payload.Body.Declarations)
+                            {
+                                @(string.Join('-', import.ID, import.Function, import.Tooltip, import.Editable) + Environment.NewLine);
+                            }    
+                        </textarea>
                     </div>
 
-                    <form>
+                    <form @onsubmit="UpdateDeclaration">
                         <div class="input-group">
                             <input type="text" class="form-control" required placeholder="Identifier for placeholder"
                                 @bind="DeclarationPayload.ID" />

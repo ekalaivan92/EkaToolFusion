@@ -19,7 +19,13 @@ public class SnippetInputHeaderPayload
     public string Shortcut { get; set; }
     
     [JsonIgnore]
-    public string KeywordsForDisplay { get => string.Join(",",  Keywords ?? []); set => Keywords = value.Split(",").Select(x => x.Trim()).ToArray(); }
+    public string KeywordsForDisplay { 
+        get => string.Join(",",  Keywords ?? []); 
+        set => Keywords = value.Split(",")
+        .Select(x => x.Trim())
+        .Where(x => !string.IsNullOrWhiteSpace(x))
+        .ToArray(); 
+    }
 }
 
 public class SnippetReferenceInputPayload
@@ -39,7 +45,7 @@ public class SnippetDeclarationInputPayload
     public string Function { get; set; }
     public string Default { get; set; }
     public string Tooltip { get; set; }
-    public string Editable { get; set; }
+    public bool Editable { get; set; }
 }
 
 public class SnippetCodeInputPayload
