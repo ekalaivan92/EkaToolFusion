@@ -26,7 +26,7 @@ public partial class PredefinedSnippetGenerators
                     ],
                     CodeBlock = new()
                     {
-                        Language = "C#",
+                        Language = "csharp",
                         Kind = "cData",
                         Delimiter = "$",
                         Code = @"public byte[] $PropName$ { get; set; }"

@@ -34,10 +34,10 @@ public partial class PredefinedSnippetGenerators
                     ],
                     CodeBlock = new()
                     {
-                        Language = "C#",
+                        Language = "csharp",
                         Kind = "cData",
                         Delimiter = "$",
-                        Code = "[[JsonConverter(typeof(StringEnumConverter))]]" + Environment.NewLine +
+                        Code = "[JsonConverter(typeof(StringEnumConverter))]" + Environment.NewLine +
                         "public $EnumType$ $PropName$ { get; set; }"
                     }
                 }

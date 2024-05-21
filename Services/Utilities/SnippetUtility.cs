@@ -1,3 +1,4 @@
+using System.Text;
 using System.Xml;
 using EkaToolFusion.Services.Extensions;
 using EkaToolFusion.Services.SnippetGenrator.Models;
@@ -10,14 +11,19 @@ public static class SnippetUtility
     {
         var xml = new XmlDocument();
 
-        var rootNode = xml.AddElement("CodeSnippets");
+        var rootNode = xml.AddElement("CodeSnippets", namespaceURI: "http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet");
+
+        var xmlDeclaration = xml.CreateXmlDeclaration("1.0", "utf-8", null);
+        xml.InsertBefore(xmlDeclaration, rootNode);
+
         var codeSnippetNode = rootNode.AddElement("CodeSnippet");
-        var currentSnippetNode = codeSnippetNode.AddElement("Snippet");
+        codeSnippetNode.AddAttribute("Format", "1.0.0");
 
         var headerNode = GenerateHeader(payload.Header);
         headerNode = xml.ImportNode(headerNode, true);
-        currentSnippetNode.AppendChild(headerNode);
+        codeSnippetNode.AppendChild(headerNode);
 
+        var currentSnippetNode = codeSnippetNode.AddElement("Snippet");
         var referencesNode = GenerateReferences(payload.Body.References);
         referencesNode = xml.ImportNode(referencesNode, true);
         currentSnippetNode.AppendChild(referencesNode);
@@ -49,8 +55,8 @@ public static class SnippetUtility
         headerDoc.AddElement("Shortcut", payload.Shortcut);
 
         headerDoc
-            .AddElement("SnipperTypes")
-            .AddElement("SnipperType", payload.SnipperType.ToString());
+            .AddElement("SnippetTypes")
+            .AddElement("SnippetType", payload.SnipperType.ToString());
 
         var keywordsElement = headerDoc
                 .AddElement("Keywords");
@@ -100,8 +106,8 @@ public static class SnippetUtility
         foreach (var reference in payloads)
         {
             var currentLitNode = declarationsDoc.AddElement("Literal");
-            currentLitNode.AddAttribute("Editable", reference.Editable ? "Yes" : "No");
-            
+            currentLitNode.AddAttribute("Editable", reference.Editable.ToString().ToLower());
+
             currentLitNode.AddElement("ID", reference.ID);
             currentLitNode.AddElement("Tooltip", reference.Tooltip);
             currentLitNode.AddElement("Default", reference.Default);

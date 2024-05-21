@@ -62,11 +62,11 @@
 
                 <div class="col-md-3 mb-1">
                     <div class="">
-                        <label class="form-label" for="languageSelect">Language</label>
+                        <label class="form-label" for="languageSelect">Language - @Payload.Body.CodeBlock.Language</label>
                         <select class="form-control" id="languageSelect" required
                             @bind="Payload.Body.CodeBlock.Language">
                             <option selected disabled hidden></option>
-                            <option value="C#">C#</option>
+                            <option value="csharp">csharp</option>
                             @* <option value="VB">VB</option> *@
                         </select>
                     </div>

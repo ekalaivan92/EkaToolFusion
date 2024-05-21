@@ -1,6 +1,5 @@
 using System.Text;
 using System.Xml;
-using Microsoft.AspNetCore.Authorization;
 
 namespace EkaToolFusion.Services.Extensions;
 
@@ -45,10 +44,21 @@ public static class XMLExtensions
 
     public static string Format(this XmlDocument doc)
     {
-        var stringWriter = new StringWriter(new StringBuilder());
-        var xmlTextWriter = new XmlTextWriter(stringWriter) { Formatting = Formatting.Indented };
-        doc.Save(xmlTextWriter);
-        
-        return stringWriter.ToString();
+        var stringBuilder = new StringBuilder();
+        var settings = new XmlWriterSettings
+        {
+            Indent = true,
+            IndentChars = "\t",
+            NewLineOnAttributes = false,
+            Encoding = Encoding.UTF8,
+            OmitXmlDeclaration = false  // Ensure XML declaration is included
+        };
+
+        using var memoryStream = new MemoryStream();
+        using var writer = XmlWriter.Create(memoryStream, settings);
+        doc.Save(writer);
+        writer.Flush();
+
+        return Encoding.UTF8.GetString(memoryStream.ToArray());
     }
 }
