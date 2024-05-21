@@ -59,6 +59,6 @@ public static class XMLExtensions
         doc.Save(writer);
         writer.Flush();
 
-        return Encoding.UTF8.GetString(memoryStream.ToArray());
+        return Encoding.UTF8.GetString(memoryStream.ToArray()).Trim();
     }
 }
