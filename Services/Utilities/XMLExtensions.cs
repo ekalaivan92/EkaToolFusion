@@ -44,11 +44,11 @@ public static class XMLExtensions
 
     public static string Format(this XmlDocument doc)
     {
-        var stringBuilder = new StringBuilder();
         var settings = new XmlWriterSettings
         {
             Indent = true,
             IndentChars = "\t",
+            NamespaceHandling = NamespaceHandling.OmitDuplicates,
             NewLineOnAttributes = false,
             Encoding = new UTF8Encoding(false),
             OmitXmlDeclaration = false  // Ensure XML declaration is included
@@ -59,6 +59,6 @@ public static class XMLExtensions
         doc.Save(writer);
         writer.Flush();
 
-        return Encoding.UTF8.GetString(memoryStream.ToArray()).Trim();
+        return Encoding.UTF8.GetString(memoryStream.ToArray()).Trim().Replace("xmlns=\"\"", "");
     }
 }
