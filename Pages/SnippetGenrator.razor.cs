@@ -1,13 +1,18 @@
-using System.Text.Json;
+using System.Text;
 using EkaToolFusion.Services.SnippetGenrator.Models;
 using EkaToolFusion.Services.SnippetGenrators.Processors;
 using EkaToolFusion.Services.Utilities;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace EkaToolFusion.Pages;
 
 public partial class SnippetGenrator : ComponentBase
 {
+
+    [Inject]
+    public IJSRuntime JS { get; set; }
+
     public SnippetInputPayload Payload { get; set; } = new();
     public SnippetReferenceInputPayload ReferencePayload { get; set; } = new();
     public SnippetImportInputPayload ImportPayload { get; set; } = new();
@@ -35,7 +40,7 @@ public partial class SnippetGenrator : ComponentBase
     private void UpdateReference()
     {
         ReferencePayload.Assembly = ReferencePayload.Assembly.Trim();
-        
+
         var hasEntry = Payload.Body.References.Any(x => x.Assembly.Equals(ReferencePayload.Assembly, StringComparison.InvariantCultureIgnoreCase));
         if (!hasEntry)
         {
@@ -64,5 +69,20 @@ public partial class SnippetGenrator : ComponentBase
         Payload = PredefinedSnippetGenerators.Generators[selectedType];
 
         GenerateSnippet();
+    }
+
+    private async Task DownloadFileFromStream()
+    {
+        var fileContent = SnippetUtility.Generate(Payload);
+        var fileStream = new MemoryStream();
+        var writter = new StreamWriter(fileStream, Encoding.UTF8);
+        writter.Write(fileContent);
+        writter.Flush();
+        fileStream.Position = 0;
+
+        var fileName = $"{Payload.Header.Title}.snippet";
+
+        using var streamRef = new DotNetStreamReference(stream: fileStream);
+        await JS.InvokeVoidAsync("downloadSnippetFile", fileName, streamRef);
     }
 }
