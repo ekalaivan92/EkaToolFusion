@@ -4,8 +4,22 @@ namespace EkaToolFusion.Services.SnippetGenrator.Models;
 
 public enum PredefinedSnippetType
 {
-    Int = 1,
-    NewtonSoftJson = 2,
+    // Bool = 1,
+    // Byte = 2,
+    // Sbyte = 3,
+    // Char = 4,
+    // Decimal = 5,
+    // Double = 6,
+    // Float = 7,
+    Int = 8,
+    // uInt = 9,
+    // nInt = 10,
+    // nUint = 11,
+    // Long = 12,
+    // ulong = 13,
+    // Short = 14,
+    // uShort = 15,
+    NewtonSoftJson = 16,
 
 }
 
