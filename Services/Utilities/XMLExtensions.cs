@@ -50,7 +50,7 @@ public static class XMLExtensions
             Indent = true,
             IndentChars = "\t",
             NewLineOnAttributes = false,
-            Encoding = Encoding.UTF8,
+            Encoding = new UTF8Encoding(false),
             OmitXmlDeclaration = false  // Ensure XML declaration is included
         };
 
