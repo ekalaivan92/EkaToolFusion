@@ -9,7 +9,7 @@ public enum PredefinedSnippetType
     SByte = 3,
     Char = 4,
     Decimal = 5,
-    // Double = 6,
+    Double = 6,
     // Float = 7,
     Int = 8,
     // uInt = 9,
