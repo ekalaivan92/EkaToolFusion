@@ -11,6 +11,7 @@ public partial class PredefinedSnippetGenerators
             { PredefinedSnippetType.NewtonSoftJson,  NewtonSoftJsonProperty },
             { PredefinedSnippetType.Int,  IntProperty },
             { PredefinedSnippetType.Long,  LongProperty },
+            { PredefinedSnippetType.Bool,  BoolProperty },
         };
 
     public SnippetInputPayload this[PredefinedSnippetType type] 
