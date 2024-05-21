@@ -8,7 +8,7 @@ public enum PredefinedSnippetType
     Byte = 2,
     SByte = 3,
     Char = 4,
-    // Decimal = 5,
+    Decimal = 5,
     // Double = 6,
     // Float = 7,
     Int = 8,

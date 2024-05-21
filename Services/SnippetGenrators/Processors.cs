@@ -16,6 +16,7 @@ public partial class PredefinedSnippetGenerators
             { PredefinedSnippetType.ByteArray,  ByteArrayProperty },
             { PredefinedSnippetType.SByte,  SByteProperty },
             { PredefinedSnippetType.Char,  CharProperty },
+            { PredefinedSnippetType.Decimal,  DecimalProperty },
         };
 
     public SnippetInputPayload this[PredefinedSnippetType type] 
