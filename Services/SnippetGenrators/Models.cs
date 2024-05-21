@@ -24,14 +24,15 @@ public class SnippetInputHeaderPayload
     public SnippetType SnipperType { get; set; }
     public string[] Keywords { get; set; }
     public string Shortcut { get; set; }
-    
+
     [JsonIgnore]
-    public string KeywordsForDisplay { 
-        get => string.Join(",",  Keywords ?? []); 
+    public string KeywordsForDisplay
+    {
+        get => string.Join(",", Keywords ?? []);
         set => Keywords = value.Split(",")
         .Select(x => x.Trim())
         .Where(x => !string.IsNullOrWhiteSpace(x))
-        .ToArray(); 
+        .ToArray();
     }
 }
 
