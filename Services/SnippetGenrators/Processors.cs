@@ -12,6 +12,7 @@ public partial class PredefinedSnippetGenerators
             { PredefinedSnippetType.Int,  IntProperty },
             { PredefinedSnippetType.Long,  LongProperty },
             { PredefinedSnippetType.Bool,  BoolProperty },
+            { PredefinedSnippetType.Byte,  ByteProperty },
         };
 
     public SnippetInputPayload this[PredefinedSnippetType type] 
