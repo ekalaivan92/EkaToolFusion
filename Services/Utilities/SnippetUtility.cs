@@ -118,7 +118,8 @@ public static class SnippetUtility
         ]]>";
 
         var declarationsDoc = new XmlDocument();
-        var codeNode = declarationsDoc.AddElement("Code", code);
+        var codeNode = declarationsDoc.AddElement("Code");
+        codeNode.InnerXml = code;
         codeNode.AddAttribute("Language", payload.Language);
         codeNode.AddAttribute("Kind", payload.Kind);
         codeNode.AddAttribute("Delimiter", payload.Delimiter);
