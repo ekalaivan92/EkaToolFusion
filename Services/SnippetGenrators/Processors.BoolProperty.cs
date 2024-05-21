@@ -16,7 +16,7 @@ public partial class PredefinedSnippetGenerators
                     Author = "Ekalaivan Chidambaram - EkaToolFusion",
                     Description = "This will generates bool / boolean property with auto implemented accessors.",
                     Keywords = ["Bool", "Boolean", "Property"],
-                    Shortcut = "mkproboolp",
+                    Shortcut = "mkboolprop",
                     SnipperType = SnippetType.Expansion,
                 },
                 Body = new()
