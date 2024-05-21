@@ -6,7 +6,7 @@ public enum PredefinedSnippetType
 {
     Bool = 1,
     Byte = 2,
-    // Sbyte = 3,
+    SByte = 3,
     // Char = 4,
     // Decimal = 5,
     // Double = 6,
