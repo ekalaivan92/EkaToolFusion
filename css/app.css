@@ -117,3 +117,15 @@ code {
         margin-left: 4px;
     }
 }
+
+.form-control
+{
+    padding: 0.275rem .45rem;
+    font-size: 0.9rem;
+}
+
+.btn
+{
+    padding: 0.175rem .75rem;
+    font-size: 0.9rem;
+}
