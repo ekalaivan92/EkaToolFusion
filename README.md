@@ -7,6 +7,8 @@ My customized tools for development designed with Blazor WebAssembly and .NET 8 
 
 This is designed to generate Visual Studio code snippets. Whether you're a seasoned developer or just getting started, this tool will streamline the process of creating reusable code snippets for your projects.
 
+Reach the running service [here](https://ekalaivan.net/EkaToolFusion/)
+
 ### Features
 
 - **Preloaded Snippets**: Select from a variety of preloaded snippets from the dropdown menu. These predefined templates will auto-populate the input fields, allowing for quick and easy customization.
@@ -57,28 +59,22 @@ Here's a quick example to illustrate how you might fill out the fields:
 - **Documentation URL**: "https://example.com/for-loop-docs"
 - **Description**: "Creates a basic for loop structure."
 - **Keywords**: "loop, for, iteration"
-- **DLL References**: ""
 - **Namespace Imports**: "System"
 - **Placeholders / Declarations**:
-  ```xml
-  <Literal>
-    <ID>iterator</ID>
-    <ToolTip>Iterator variable</ToolTip>
-    <Default>i</Default>
-  </Literal>
-  <Literal>
-    <ID>limit</ID>
-    <ToolTip>Loop limit</ToolTip>
-    <Default>10</Default>
-  </Literal>
-  ```
+  - **First one**    
+    - **Name**: iterator
+    - **ToolTip**: Iterator variable
+    - **Default**: i
+  - **Second one**
+    - **Name**: limit
+    - **ToolTip**: Loop limit
+    - **Default**: 10
+  
 - **Code**:
-  ```csharp
   for (int $iterator$ = 0; $iterator$ < $limit$; $iterator$++)
   {
       // TODO: Add your code here
   }
-  ```
 
 ## Installation and Setup
 
@@ -90,8 +86,8 @@ To run this project locally, ensure you have the following prerequisites:
 Clone the repository and navigate to the project directory:
 
 ```sh
-git clone https://github.com/yourusername/advanced-vs-snippet-generator.git
-cd advanced-vs-snippet-generator
+git clone https://github.com/ekalaivan92/EkaToolFusion.git
+cd EkaToolFusion
 ```
 
 Run the project:
@@ -109,9 +105,3 @@ Contributions are welcome! Feel free to submit a pull request or open an issue i
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
-
-Thank you for using the Advanced Visual Studio Snippet Generator! If you have any questions or need further assistance, please don't hesitate to reach out.
-
-Happy coding! 🚀
