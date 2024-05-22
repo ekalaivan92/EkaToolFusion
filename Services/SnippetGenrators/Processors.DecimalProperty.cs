@@ -21,6 +21,7 @@ public partial class PredefinedSnippetGenerators
                 },
                 Body = new()
                 {
+                    DeclarationsRequired = true,
                     Declarations = [
                         new() { ID = "PropName", Default = "MyProp", Editable = true, Tooltip = "Property name to be used for property declaration " }
                     ],

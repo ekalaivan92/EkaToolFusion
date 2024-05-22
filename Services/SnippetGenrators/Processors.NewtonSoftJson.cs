@@ -21,13 +21,16 @@ public partial class PredefinedSnippetGenerators
                 },
                 Body = new()
                 {
+                    ReferencesRequired = true,
                     References = [
                          new() {  Assembly = "Newtonsoft.Json.dll" }
                     ],
+                    ImportsRequired = true,
                     Imports = [
                         new() {  Namespace = "Newtonsoft.Json" },
                         new() { Namespace = "Newtonsoft.Json.Converters" }
                     ],
+                    DeclarationsRequired = true,
                     Declarations = [
                         new() { ID = "EnumType", Default = "MyEnum", Editable = true, Tooltip = "Enum type to be used for the property type " },
                         new() { ID = "PropName", Default = "MyProp", Editable = true, Tooltip = "Property name to be used for property declaration " }

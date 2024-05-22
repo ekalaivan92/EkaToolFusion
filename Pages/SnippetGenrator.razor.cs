@@ -18,10 +18,12 @@ public partial class SnippetGenrator : ComponentBase
     public SnippetImportInputPayload ImportPayload { get; set; } = new();
     public SnippetDeclarationInputPayload DeclarationPayload { get; set; } = new();
     public string CodeSnippet { get; set; }
+    public bool CanDownload { get; set; } = false;
 
     private void GenerateSnippet()
     {
         CodeSnippet = SnippetUtility.Generate(Payload);
+        CanDownload = true;
     }
 
     private void UpdateDeclaration()
@@ -84,5 +86,17 @@ public partial class SnippetGenrator : ComponentBase
 
         using var streamRef = new DotNetStreamReference(stream: fileStream);
         await JS.InvokeVoidAsync("downloadSnippetFile", fileName, streamRef);
+    
+        ResetInputs();
+    }
+
+    private void ResetInputs()
+    {
+        Payload = new();
+        ReferencePayload = new();
+        ImportPayload = new();
+        DeclarationPayload = new();
+        CodeSnippet = string.Empty;
+        CanDownload = false;
     }
 }

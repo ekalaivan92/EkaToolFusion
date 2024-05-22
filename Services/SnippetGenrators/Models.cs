@@ -82,6 +82,10 @@ public class SnippetCodeInputPayload
 
 public class SnippetInputBodyPayload
 {
+    public bool ReferencesRequired { get; set; }
+    public bool ImportsRequired { get; set; }
+    public bool DeclarationsRequired { get; set; }
+
     public IEnumerable<SnippetReferenceInputPayload> References { get; set; }
     public IEnumerable<SnippetImportInputPayload> Imports { get; set; }
     public IEnumerable<SnippetDeclarationInputPayload> Declarations { get; set; }
