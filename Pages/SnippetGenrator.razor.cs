@@ -20,6 +20,16 @@ public partial class SnippetGenrator : ComponentBase
     public string CodeSnippet { get; set; }
     public bool CanDownload { get; set; } = false;
 
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if(firstRender)
+        {
+            await JS.InvokeVoidAsync("Initialize");
+        }
+    }
+
     private void GenerateSnippet()
     {
         CodeSnippet = SnippetUtility.Generate(Payload);

@@ -166,9 +166,20 @@ code {
     left: -32px;
 }
 
-.tooltip-container.right .tooltip {
+
+.tooltip-container .tooltip.left {
     left: auto;
     right: 0px;
+}
+
+.tooltip-container .tooltip.top {
+    top: auto;
+    bottom: 0px;
+}
+
+.tooltip-container.pull-down .tooltip.top {
+    top: auto;
+    bottom: -31px;
 }
 
 .tooltip-container .tooltip .header {
