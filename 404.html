@@ -52,8 +52,61 @@
       anchorElement.click();
       anchorElement.remove();
       URL.revokeObjectURL(url);
+  }
+</script>
+
+<script>
+  window.Initialize = () => {
+    const tooltipContainers = document.querySelectorAll('.tooltip-container');
+
+    function getElementPositionFromBody(element) {
+      const rect = element.getBoundingClientRect();
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      return {
+        top: rect.top + scrollTop,
+        left: rect.left + scrollLeft
+      };
     }
-  </script>
+
+    function adjustTooltipPosition(container) {
+      const tooltip = container.querySelector('.tooltip');
+      const bounding = tooltip.getBoundingClientRect();
+
+      var elementPosition = getElementPositionFromBody(container);
+
+      if (bounding.right + tooltip.clientWidth > window.innerWidth) {
+        if (!tooltip.classList.contains('left')) {
+          tooltip.classList.add('left');
+        }
+      } else {
+        tooltip.classList.remove('left');
+      }
+
+      if (bounding.bottom + tooltip.clientHeight > window.innerHeight) {
+        if (!tooltip.classList.contains('top')) {
+          tooltip.classList.add('top');
+        }
+      } else {
+        tooltip.classList.remove('top');
+      }
+    }
+
+    tooltipContainers.forEach(container => {
+
+      adjustTooltipPosition(container);
+
+      container.addEventListener('mouseover', function () {
+        adjustTooltipPosition(container);
+      });
+
+      container.addEventListener('focus', function () {
+        adjustTooltipPosition(container);
+      });
+    });
+  };
+</script>
 
 <script type="application/ld+json">
     {
