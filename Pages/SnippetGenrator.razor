@@ -11,36 +11,58 @@
             <div class="row g-1 gx-2">
                 <div class="col-md-4 mb-1">
                     <div class="form-group">
-                        <label class="form-label" for="titleInput">Name</label>
+                        <label class="form-label w-100" for="titleInput">Name</label>
                         <input type="text" class="form-control" required id="titleInput"
                             placeholder="Title for the snippet" autofocus maxlength="100"
-                            @bind-value="Payload.Header.Title">
+                            title="This will used in snippet manager to display snippet name."
+                            @bind-value="Payload.Header.Title" />
+                        <span class="tooltip-container">
+                            <i class="bi bi-lightbulb text-secondary"></i>
+                            <span class="tooltip">
+                                <span class="header">Name:</span>
+                                This will used in snippet manager to display snippet name.
+                            </span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <div class="">
-                        <label class="form-label" for="shortcutInput">Shortcut</label>
+                        <label class="form-label w-100" for="shortcutInput">Shortcut</label>
                         <input type="text" class="form-control" id="shortcutInput" required
                             placeholder="Shortcut to replaced by code" @bind-value="Payload.Header.Shortcut" />
+                        <span class="tooltip-container">
+                            <i class="bi bi-lightbulb text-secondary"></i>
+                            <span class="tooltip">
+                                <span class="header">Shortcut:</span>
+                                Specifies the shortcut text that can be used to insert the snippet.
+                            </span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <div class="">
-                        <label class="form-label" for="languageSelect">Language</label>
+                        <label class="form-label w-100" for="languageSelect">Language</label>
                         <select class="form-control" id="languageSelect" required
                             @bind="Payload.Body.CodeBlock.Language">
                             <option selected disabled hidden></option>
                             <option value="csharp">csharp</option>
                             @* <option value="VB">VB</option> *@
                         </select>
+                        <span class="tooltip-container">
+                            <i class="bi bi-lightbulb text-secondary"></i>
+                            <span class="tooltip">
+                                <span class="header">Language:</span>
+                                The programming language of the code snippet going to be used for.
+                            </span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <div class="">
-                        <label class="form-label" for="typeSelect">Type</label>
+                        <label class="form-label w-100" for="typeSelect">Type</label>
                         <select class="form-control" id="typeSelect" @bind="Payload.Header.SnipperType">
                             <option selected disabled hidden></option>
                             @foreach (var snippetType in Enum.GetValues(typeof(SnippetType)))
@@ -48,40 +70,75 @@
                                 <option value="@snippetType">@snippetType</option>
                             }
                         </select>
+                        <span class="tooltip-container">
+                            <i class="bi bi-lightbulb text-secondary"></i>
+                            <span class="tooltip">
+                                <span class="header">Type:</span>
+                                Specifies how Visual Studio inserts the code snippet into the code.
+                            </span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <div class="form-group">
-                        <label class="form-label" for="authorInput">Author</label>
+                        <label class="form-label w-100" for="authorInput">Author</label>
                         <input type="text" class="form-control" id="authorInput" placeholder="Author Name"
                             maxlength="50" @bind-value="Payload.Header.Author" />
+                        <span class="tooltip-container">
+                            <i class="bi bi-lightbulb text-secondary"></i>
+                            <span class="tooltip">
+                                <span class="header">Author:</span>
+                                The name of the person or company that authored the code snippet.
+                            </span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-1">
                     <div class="form-group">
-                        <label class="form-label" for="helpURLInput">Documentation URL</label>
+                        <label class="form-label w-100" for="helpURLInput">Documentation URL</label>
                         <input type="text" class="form-control" id="helpURLInput" placeholder="Help URL for the snippet"
-                            autofocus maxlength="250" @bind-value="Payload.Header.HelpURL">
+                            autofocus maxlength="250" @bind-value="Payload.Header.HelpURL" />
+                        <span class="tooltip-container">
+                            <i class="bi bi-lightbulb text-secondary"></i>
+                            <span class="tooltip">
+                                <span class="header">Documentation URL:</span>
+                                A URL that contains more information about the code snippet.
+                            </span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-1">
                     <div class="form-group">
-                        <label class="form-label" for="DescriptionInput">Description</label>
+                        <label class="form-label w-100" for="DescriptionInput">Description</label>
                         <input type="text" class="form-control" id="DescriptionInput"
                             placeholder="Description for the snippet" autofocus maxlength="250"
-                            @bind-value="Payload.Header.Description">
+                            @bind-value="Payload.Header.Description" />
+                        <span class="tooltip-container">
+                            <i class="bi bi-lightbulb text-secondary"></i>
+                            <span class="tooltip">
+                                <span class="header">Description:</span>
+                                A detailed description of the code snippet.
+                            </span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-1">
                     <div class="form-group">
-                        <label class="form-label" for="keywordsInput">Keywords</label>
+                        <label class="form-label w-100" for="keywordsInput">Keywords</label>
                         <input type="text" class="form-control" id="keywordsInput"
                             placeholder="Comma separated keywords" autofocus maxlength="250"
-                            @bind-value="Payload.Header.KeywordsForDisplay">
+                            @bind-value="Payload.Header.KeywordsForDisplay" />
+                        <span class="tooltip-container">
+                            <i class="bi bi-lightbulb text-secondary"></i>
+                            <span class="tooltip">
+                                <span class="header">Keywords:</span>
+                                Comma separated list of keywords for the code snippet.
+                            </span>
+                        </span>
                     </div>
                 </div>
 
@@ -91,7 +148,7 @@
                     <div class="">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch"
-                                @bind="Payload.Body.ReferencesRequired">
+                                @bind="Payload.Body.ReferencesRequired" />
                             <label class="form-check-label" for="flexSwitchCheckChecked">DLL References Required</label>
                         </div>
                         <table class="table border table-sm mb-0 @(Payload.Body.ReferencesRequired ? "" : "d-none")"
@@ -125,8 +182,26 @@
                         <div class="input-group">
                             <input type="text" required class="form-control" placeholder="DLL fullname with extension"
                                 @bind="ReferencePayload.Assembly" />
+                            <span class="tooltip-container">
+                                <i class="bi bi-lightbulb text-secondary"></i>
+                                <span class="tooltip">
+                                    <span class="header">DLL reference:</span>
+                                    Contains the name of the assembly referenced by the code snippet.
+                                    This will automatically refered by the snippet for the targeting project.
+                                    This should be the exact full name of the assembly dll including the extension.
+                                </span>
+                            </span>
+
                             <input type="text" class="form-control" placeholder="DLL documentation URL"
                                 @bind="ReferencePayload.HelpURL" />
+                            <span class="tooltip-container">
+                                <i class="bi bi-lightbulb text-secondary"></i>
+                                <span class="tooltip">
+                                    <span class="header">Documentation URL:</span>
+                                    Contains a URL that provides more information about the given assembly.
+                                </span>
+                            </span>
+
                             <input type="submit" class="btn btn-primary" Value="+" />
                         </div>
                     </form>
@@ -166,8 +241,18 @@
 
                     <form @onsubmit="UpdateImport" class="@(Payload.Body.ImportsRequired ? "" : "d-none")">
                         <div class="input-group">
-                            <input type="text" class="form-control" required placeholder="Name of the Namespace to import"
-                                @bind="ImportPayload.Namespace" />
+                            <input type="text" class="form-control" required
+                                placeholder="Name of the Namespace to import" @bind="ImportPayload.Namespace" />
+                            <span class="tooltip-container">
+                                <i class="bi bi-lightbulb text-secondary"></i>
+                                <span class="tooltip">
+                                    <span class="header">Namespace:</span>
+                                    Specifies the namespace used by the code snippet. This will automatically imported
+                                    to the class which triggers the snippet.
+                                    This should be the exact namespace name including separators(.).
+                                </span>
+                            </span>
+
                             <input type="submit" class="btn btn-primary" Value="+" />
                         </div>
                     </form>
@@ -219,14 +304,50 @@
 
                     <form @onsubmit="UpdateDeclaration" class="@(Payload.Body.DeclarationsRequired ? "" : "d-none")">
                         <div class="input-group">
-                            <input type="text" class="form-control" required placeholder="Placeholder name for code block"
-                                @bind="DeclarationPayload.ID" />
+                            <input type="text" class="form-control" required
+                                placeholder="Placeholder name for code block" @bind="DeclarationPayload.ID" />
+                            <span class="tooltip-container">
+                                <i class="bi bi-lightbulb text-secondary"></i>
+                                <span class="tooltip">
+                                    <span class="header">Name:</span>
+                                    This identifies a replacement for a piece of code entirely contained within the
+                                    snippet that can be customized after the snippet is inserted.
+                                    In the code block this name should referenced with $ symbol.
+                                </span>
+                            </span>
+
                             <input type="text" class="form-control" placeholder="Default name for placeholder"
                                 @bind="DeclarationPayload.Default" />
+                            <span class="tooltip-container">
+                                <i class="bi bi-lightbulb text-secondary"></i>
+                                <span class="tooltip">
+                                    <span class="header">Default Name:</span>
+                                    Specifies the default value for the replacement literal when you insert the code
+                                    snippet.
+                                </span>
+                            </span>
+
                             <input type="text" class="form-control" placeholder="Tooltip for placeholder"
                                 @bind="DeclarationPayload.Tooltip" />
+                            <span class="tooltip-container">
+                                <i class="bi bi-lightbulb text-secondary"></i>
+                                <span class="tooltip">
+                                    <span class="header">Tooltip:</span>
+                                    Can used to describe the expected value and usage of the replacement literal.
+                                </span>
+                            </span>
+
                             <input type="text" class="form-control" placeholder="Function name for placeholder"
                                 @bind="DeclarationPayload.Function" />
+                            <span class="tooltip-container">
+                                <i class="bi bi-lightbulb text-secondary"></i>
+                                <span class="tooltip">
+                                    <span class="header">Function Name:</span>
+                                    Specifies a function to execute when the replacemetn literal receives focus in
+                                    Visual Studio.
+                                </span>
+                            </span>
+
                             <div class="input-group-text">
                                 <input type="checkbox" class="form-check-input mt-0" placeholder="Editable"
                                     title="Is this placehoder editable" @bind="DeclarationPayload.Editable" />
@@ -240,7 +361,19 @@
 
                 <div class="col-md-12 mb-1">
                     <div class="">
-                        <label class="form-label" for="codeInput">Code</label>
+                        <label class="form-label w-100" for="codeInput">Code</label>
+                        <span class="tooltip-container pull-down">
+                            <i class="bi bi-lightbulb text-secondary"></i>
+                            <span class="tooltip">
+                                <span class="header">Name:</span>
+                                Provides a container for short code block which will be expanded or sorrounded based on
+                                the type.
+                                This gives all declarated replacement literals and Two reserved words are available for
+                                use in the text of the Code element: $end$ and $selected$. $end$ marks the location to
+                                place the cursor after the code snippet is inserted. $selected$ represents selected
+                                document text to insert into the snippet when the snippet is invoked.
+                            </span>
+                        </span>
                         <textarea class="form-control" rows="4" required placeholder="Code block to be replaced by"
                             @bind="Payload.Body.CodeBlock.Code"></textarea>
                     </div>
@@ -252,8 +385,8 @@
                             <input type="submit" class="btn btn-success pull-right" value="Generate" />
                             <input type="button" class="btn btn-success pull-right" value="Download"
                                 @onclick="DownloadFileFromStream" disabled="@(!CanDownload)" />
-                            <input type="submit" class="btn btn-danger pull-right" value="Reset" 
-                                @onclick="ResetInputs"/>
+                            <input type="submit" class="btn btn-danger pull-right" value="Reset"
+                                @onclick="ResetInputs" />
                         </div>
                     </div>
                 </div>
@@ -264,7 +397,7 @@
         <div class="row">
             <div class="col-md-12 mb-1">
                 <div class="">
-                    <label class="form-label" for="languageSelect">Preload Snippet Samples</label>
+                    <label class="form-label w-100" for="languageSelect">Preload Snippet Samples</label>
                     <select class="form-control" id="preloadSelect" @onchange="OnPreloadSelect">
                         <option selected disabled hidden></option>
                         @foreach (var snippetType in Enum.GetValues(typeof(PredefinedSnippetType)))
@@ -272,6 +405,14 @@
                             <option value="@((int)snippetType)">@snippetType</option>
                         }
                     </select>
+                    <span class="tooltip-container">
+                        <i class="bi bi-lightbulb text-secondary"></i>
+                        <span class="tooltip">
+                            <span class="header">Samples:</span>
+                            This actually predefined snippets that can be loaded and downloaded for use. Also you can
+                            select a snippet and modify it to your need and use download and use it.
+                        </span>
+                    </span>
                 </div>
 
             </div>
