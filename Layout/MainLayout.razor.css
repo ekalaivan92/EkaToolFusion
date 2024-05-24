@@ -21,17 +21,23 @@ main {
     align-items: center;
 }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
+    .top-row ::deep a, .top-row ::deep .btn-link,
+    .bottom-row ::deep a, .bottom-row ::deep .btn-link
+     {
         white-space: nowrap;
         margin-left: 1.5rem;
         text-decoration: none;
     }
 
-    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
+    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover,
+    .bottom-row ::deep a:hover, .bottom-row ::deep .btn-link:hover
+    {
         text-decoration: underline;
     }
 
-    .top-row ::deep a:first-child {
+    .top-row ::deep a:first-child, 
+    .bottom-row ::deep a:first-child 
+    {
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -74,4 +80,17 @@ main {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
+}
+
+
+.bottom-row {
+    background-color: #f7f7f7;
+    border-top: 1px solid #d6d5d5;
+    justify-content: flex-start;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    bottom: 0px;
+    padding: 12px 12px;
 }
