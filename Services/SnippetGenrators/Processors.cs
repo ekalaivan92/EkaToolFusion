@@ -10,7 +10,11 @@ public partial class PredefinedSnippetGenerators
         => new(){
             { PredefinedSnippetType.NewtonSoftJson,  NewtonSoftJsonProperty },
             { PredefinedSnippetType.Int,  IntProperty },
+            { PredefinedSnippetType.UInt,  UIntProperty },
+            { PredefinedSnippetType.NInt,  NIntProperty },
+            { PredefinedSnippetType.NUint,  NUIntProperty },
             { PredefinedSnippetType.Long,  LongProperty },
+            { PredefinedSnippetType.ULong,  ULongProperty },
             { PredefinedSnippetType.Bool,  BoolProperty },
             { PredefinedSnippetType.Byte,  ByteProperty },
             { PredefinedSnippetType.ByteArray,  ByteArrayProperty },
@@ -19,10 +23,6 @@ public partial class PredefinedSnippetGenerators
             { PredefinedSnippetType.Decimal,  DecimalProperty },
             { PredefinedSnippetType.Double,  DoubleProperty },
             { PredefinedSnippetType.Float,  FloatProperty },
-            { PredefinedSnippetType.UInt,  UIntProperty },
-            { PredefinedSnippetType.NInt,  NIntProperty },
-            { PredefinedSnippetType.NUint,  NUIntProperty },
-            { PredefinedSnippetType.ULong,  ULongProperty },
             { PredefinedSnippetType.Short,  ShortProperty },
             { PredefinedSnippetType.UShort,  UShortProperty },
         };
