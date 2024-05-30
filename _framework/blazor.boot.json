@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "EkaToolFusion",
   "resources": {
-    "hash": "sha256-EsPCwBy8lx4jtR7E07V85owLR1WoSokYeduuHirvvFI=",
+    "hash": "sha256-RKpdWeBzsKpPzgKQe7qef8+BC+rMuIj8VrMJgDbguWI=",
     "jsModuleNative": {
       "dotnet.native.8.0.6.suuomc2hr0.js": "sha256-YU6M9+jtDVnB8/wtrgIndOstzNh778Ls8g9XnbjorSk="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "EkaToolFusion.wasm": "sha256-5bKfDde6OUKuecw31MH89yBnPk1UQzNnE+EAbL4snTs=",
+      "EkaToolFusion.wasm": "sha256-0a+zPEwbP2mnsNP4zpr43Os67W0TINTK3W3Lk5QQ6so=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-frJNoE1nRwTuhfOi0V+10c3ecrBZhX9sj08pjixmh2U=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-VnMUskpCPmW1fX4qZihu4ZyOPWe/cSBWh229O8+OZxU=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-9pa4TX6FPCR8IZ3hObhj8D/J0Rp+4PZ1bfCK0WQAIZ8=",
