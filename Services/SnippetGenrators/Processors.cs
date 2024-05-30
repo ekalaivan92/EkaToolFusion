@@ -7,8 +7,9 @@ public partial class PredefinedSnippetGenerators
     public static PredefinedSnippetGenerators Generators = new();
 
     public Dictionary<PredefinedSnippetType, SnippetInputPayload> Snippets
-        => new(){
+        => new() {
             { PredefinedSnippetType.NewtonSoftJson,  NewtonSoftJsonProperty },
+            { PredefinedSnippetType.SystemTextJson,  SystemTextJsonProperty },
             { PredefinedSnippetType.Int,  IntProperty },
             { PredefinedSnippetType.UInt,  UIntProperty },
             { PredefinedSnippetType.NInt,  NIntProperty },
