@@ -14,7 +14,7 @@ public enum PredefinedSnippetType
     Int = 8,
     uInt = 9,
     nInt = 10,
-    // nUint = 11,
+    nUint = 11,
     Long = 12,
     // ulong = 13,
     // Short = 14,

@@ -21,6 +21,7 @@ public partial class PredefinedSnippetGenerators
             { PredefinedSnippetType.Float,  FloatProperty },
             { PredefinedSnippetType.uInt,  UIntProperty },
             { PredefinedSnippetType.nInt,  NIntProperty },
+            { PredefinedSnippetType.nUint,  NUIntProperty },
         };
 
     public SnippetInputPayload this[PredefinedSnippetType type]
