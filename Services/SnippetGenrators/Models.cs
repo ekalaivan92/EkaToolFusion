@@ -10,7 +10,7 @@ public enum PredefinedSnippetType
     Char = 4,
     Decimal = 5,
     Double = 6,
-    // Float = 7,
+    Float = 7,
     Int = 8,
     // uInt = 9,
     // nInt = 10,
