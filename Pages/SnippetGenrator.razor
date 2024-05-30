@@ -148,9 +148,9 @@
                 <div class="col-md-6 mb-1">
                     <div class="">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch"
+                            <input class="form-check-input" type="checkbox" role="switch" id="dllReferenceCheckbox"
                                 @bind="Payload.Body.ReferencesRequired" />
-                            <label class="form-check-label" for="flexSwitchCheckChecked">DLL References Required</label>
+                            <label class="form-check-label" for="dllReferenceCheckbox">DLL References Required</label>
                         </div>
                         <table class="table border table-sm mb-0 @(Payload.Body.ReferencesRequired ? "" : "d-none")"
                             style="height: 125PX;">
@@ -211,9 +211,9 @@
                 <div class="col-md-6 mb-1">
                     <div class="">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                            <input class="form-check-input" type="checkbox" role="switch" id="importsEnabledCheckbox"
                                 @bind="Payload.Body.ImportsRequired">
-                            <label class="form-check-label" for="flexSwitchCheckChecked">Namespace Imports
+                            <label class="form-check-label" for="importsEnabledCheckbox">Namespace Imports
                                 Required</label>
                         </div>
                         <table class="table border table-sm mb-0 @(Payload.Body.ImportsRequired ? "" : "d-none")"
@@ -264,9 +264,9 @@
                 <div class="col-md-12 mb-1">
                     <div class="">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                            <input class="form-check-input" type="checkbox" role="switch" id="declarationsEnabledCheckbox"
                                 @bind="Payload.Body.DeclarationsRequired">
-                            <label class="form-check-label" for="flexSwitchCheckChecked">Placeholders / Declarations
+                            <label class="form-check-label" for="declarationsEnabledCheckbox">Placeholders / Declarations
                                 Required</label>
                         </div>
                         <table class="table border table-sm mb-0 @(Payload.Body.DeclarationsRequired ? "" : "d-none")"
@@ -375,7 +375,7 @@
                                 document text to insert into the snippet when the snippet is invoked.
                             </span>
                         </span>
-                        <textarea class="form-control" rows="4" required placeholder="Code block to be replaced by"
+                        <textarea class="form-control" rows="4" required id="codeInput" placeholder="Code block to be replaced by"
                             @bind="Payload.Body.CodeBlock.Code"></textarea>
                     </div>
                 </div>
@@ -398,7 +398,7 @@
         <div class="row">
             <div class="col-md-12 mb-1">
                 <div class="">
-                    <label class="form-label w-100" for="languageSelect">Preload Snippet Samples</label>
+                    <label class="form-label w-100" for="preloadSelect">Preload Snippet Samples</label>
                     <select class="form-control" id="preloadSelect" @onchange="OnPreloadSelect">
                         <option selected disabled hidden></option>
                         @foreach (var snippetType in Enum.GetValues(typeof(PredefinedSnippetType)))
@@ -425,9 +425,9 @@
             <div class="col-md-12">
                 <div class="form-floating">
                     <textarea class="form-control" style="height: calc(100vh - 212px); resize: none;" disabled readonly
-                        resize="false" @bind="CodeSnippet">
+                        resize="false" @bind="CodeSnippet" id="snippetPreview">
                 </textarea>
-                    <label for="floatingInput">Generated Snippet Preview</label>
+                    <label for="snippetPreview">Generated Snippet Preview</label>
                 </div>
             </div>
         </div>
