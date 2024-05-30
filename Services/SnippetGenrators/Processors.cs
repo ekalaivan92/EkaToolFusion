@@ -19,9 +19,9 @@ public partial class PredefinedSnippetGenerators
             { PredefinedSnippetType.Decimal,  DecimalProperty },
             { PredefinedSnippetType.Double,  DoubleProperty },
             { PredefinedSnippetType.Float,  FloatProperty },
-            { PredefinedSnippetType.uInt,  UIntProperty },
-            { PredefinedSnippetType.nInt,  NIntProperty },
-            { PredefinedSnippetType.nUint,  NUIntProperty },
+            { PredefinedSnippetType.UInt,  UIntProperty },
+            { PredefinedSnippetType.NInt,  NIntProperty },
+            { PredefinedSnippetType.NUint,  NUIntProperty },
             { PredefinedSnippetType.ULong,  ULongProperty },
         };
 
