@@ -16,7 +16,7 @@ public enum PredefinedSnippetType
     nInt = 10,
     nUint = 11,
     Long = 12,
-    // ulong = 13,
+    ULong = 13,
     // Short = 14,
     // uShort = 15,
     NewtonSoftJson = 16,
