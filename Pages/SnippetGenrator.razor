@@ -399,7 +399,7 @@
             <div class="col-md-12 mb-1">
                 <div class="">
                     <label class="form-label w-100" for="preloadSelect">Preload Snippet Samples</label>
-                    <select class="form-control" id="preloadSelect" @onchange="OnPreloadSelect">
+                    <select class="form-control" id="preloadSelect" @bind:get="PreLoadSelected" @bind:set="(value) => { OnPreloadSelect(value); }">
                         <option selected disabled hidden></option>
                         @foreach (var snippetType in Enum.GetValues(typeof(PredefinedSnippetType)))
                         {

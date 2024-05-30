@@ -18,6 +18,7 @@ public partial class SnippetGenrator : ComponentBase
     public SnippetImportInputPayload ImportPayload { get; set; } = new();
     public SnippetDeclarationInputPayload DeclarationPayload { get; set; } = new();
     public string CodeSnippet { get; set; }
+    public int PreLoadSelected { get; set; }
     public bool CanDownload { get; set; } = false;
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
@@ -75,9 +76,10 @@ public partial class SnippetGenrator : ComponentBase
         ImportPayload = new();
     }
 
-    private void OnPreloadSelect(ChangeEventArgs eventArgs)
+    private void OnPreloadSelect(int selectedValue)
     {
-        var selectedType = Enum.Parse<PredefinedSnippetType>((string)eventArgs.Value);
+        PreLoadSelected = selectedValue;
+        var selectedType = (PredefinedSnippetType)selectedValue;
         Payload = PredefinedSnippetGenerators.Generators[selectedType];
 
         GenerateSnippet();
@@ -108,5 +110,6 @@ public partial class SnippetGenrator : ComponentBase
         DeclarationPayload = new();
         CodeSnippet = string.Empty;
         CanDownload = false;
+        PreLoadSelected = 0;
     }
 }
