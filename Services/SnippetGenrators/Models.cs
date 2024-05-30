@@ -12,7 +12,7 @@ public enum PredefinedSnippetType
     Double = 6,
     Float = 7,
     Int = 8,
-    // uInt = 9,
+    uInt = 9,
     // nInt = 10,
     // nUint = 11,
     Long = 12,
