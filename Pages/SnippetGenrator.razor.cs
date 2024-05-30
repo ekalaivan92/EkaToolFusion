@@ -25,7 +25,7 @@ public partial class SnippetGenrator : ComponentBase
     {
         await base.OnAfterRenderAsync(firstRender);
 
-        if(firstRender)
+        if (firstRender)
         {
             await JS.InvokeVoidAsync("Initialize");
         }
@@ -98,7 +98,7 @@ public partial class SnippetGenrator : ComponentBase
 
         using var streamRef = new DotNetStreamReference(stream: fileStream);
         await JS.InvokeVoidAsync("downloadSnippetFile", fileName, streamRef);
-    
+
         ResetInputs();
     }
 

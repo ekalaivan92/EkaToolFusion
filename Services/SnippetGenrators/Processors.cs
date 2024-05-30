@@ -4,10 +4,10 @@ namespace EkaToolFusion.Services.SnippetGenrators.Processors;
 
 public partial class PredefinedSnippetGenerators
 {
-    public static PredefinedSnippetGenerators Generators = new(); 
+    public static PredefinedSnippetGenerators Generators = new();
 
     public Dictionary<PredefinedSnippetType, SnippetInputPayload> Snippets
-        => new(){ 
+        => new(){
             { PredefinedSnippetType.NewtonSoftJson,  NewtonSoftJsonProperty },
             { PredefinedSnippetType.Int,  IntProperty },
             { PredefinedSnippetType.Long,  LongProperty },
@@ -20,6 +20,6 @@ public partial class PredefinedSnippetGenerators
             { PredefinedSnippetType.Double,  DoubleProperty },
         };
 
-    public SnippetInputPayload this[PredefinedSnippetType type] 
+    public SnippetInputPayload this[PredefinedSnippetType type]
         => Snippets[type];
 }

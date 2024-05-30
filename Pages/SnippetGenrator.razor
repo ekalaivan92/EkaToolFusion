@@ -264,9 +264,10 @@
                 <div class="col-md-12 mb-1">
                     <div class="">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="declarationsEnabledCheckbox"
-                                @bind="Payload.Body.DeclarationsRequired">
-                            <label class="form-check-label" for="declarationsEnabledCheckbox">Placeholders / Declarations
+                            <input class="form-check-input" type="checkbox" role="switch"
+                                id="declarationsEnabledCheckbox" @bind="Payload.Body.DeclarationsRequired">
+                            <label class="form-check-label" for="declarationsEnabledCheckbox">Placeholders /
+                                Declarations
                                 Required</label>
                         </div>
                         <table class="table border table-sm mb-0 @(Payload.Body.DeclarationsRequired ? "" : "d-none")"
@@ -375,8 +376,8 @@
                                 document text to insert into the snippet when the snippet is invoked.
                             </span>
                         </span>
-                        <textarea class="form-control" rows="4" required id="codeInput" placeholder="Code block to be replaced by"
-                            @bind="Payload.Body.CodeBlock.Code"></textarea>
+                        <textarea class="form-control" rows="4" required id="codeInput"
+                            placeholder="Code block to be replaced by" @bind="Payload.Body.CodeBlock.Code"></textarea>
                     </div>
                 </div>
 
@@ -399,7 +400,8 @@
             <div class="col-md-12 mb-1">
                 <div class="">
                     <label class="form-label w-100" for="preloadSelect">Preload Snippet Samples</label>
-                    <select class="form-control" id="preloadSelect" @bind:get="PreLoadSelected" @bind:set="(value) => { OnPreloadSelect(value); }">
+                    <select class="form-control" id="preloadSelect" @bind:get="PreLoadSelected"
+                        @bind:set="(value) => { OnPreloadSelect(value); }">
                         <option selected disabled hidden></option>
                         @foreach (var snippetType in Enum.GetValues(typeof(PredefinedSnippetType)))
                         {
