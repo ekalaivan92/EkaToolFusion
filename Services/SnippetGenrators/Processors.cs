@@ -23,6 +23,7 @@ public partial class PredefinedSnippetGenerators
             { PredefinedSnippetType.NInt,  NIntProperty },
             { PredefinedSnippetType.NUint,  NUIntProperty },
             { PredefinedSnippetType.ULong,  ULongProperty },
+            { PredefinedSnippetType.Short,  ShortProperty },
         };
 
     public SnippetInputPayload this[PredefinedSnippetType type]
