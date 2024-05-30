@@ -18,7 +18,7 @@ public enum PredefinedSnippetType
     Long = 12,
     ULong = 13,
     Short = 14,
-    // uShort = 15,
+    UShort = 15,
     NewtonSoftJson = 16,
     ByteArray = 17,
 
