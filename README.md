@@ -55,7 +55,7 @@ Here's a quick example to illustrate how you might fill out the fields:
 - **Shortcut**: "forloop"
 - **Language**: "C#"
 - **Type**: "Expansion"
-- **Author**: "John Doe"
+- **Author**: "Ekalaivan Chidambaram - EkaToolFusion"
 - **Documentation URL**: "https://example.com/for-loop-docs"
 - **Description**: "Creates a basic for loop structure."
 - **Keywords**: "loop, for, iteration"
