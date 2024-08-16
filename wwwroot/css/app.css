@@ -195,3 +195,13 @@ code {
 .input-group .tooltip-container .tooltip {
     top: 30px;
 }
+
+.link-i-middle
+{
+    height: 100% !important;
+}
+
+.link-i-middle::before
+{
+    vertical-align: middle !important;
+}
