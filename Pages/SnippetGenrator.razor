@@ -168,13 +168,6 @@
                                         <td class="py-0 w-50">@reference.HelpURL</td>
                                     </tr>
                                 }
-
-                                @if (!Payload.Body.References.Any())
-                                {
-                                    <tr>
-                                        <td colspan="2">No references added</td>
-                                    </tr>
-                                }
                             </tbody>
                         </table>
                     </div>
@@ -228,12 +221,6 @@
                                 {
                                     <tr style="py-0 w-100">
                                         <td class="py-0 w-50">@reference.Namespace</td>
-                                    </tr>
-                                }
-                                @if (!Payload.Body.References.Any())
-                                {
-                                    <tr>
-                                        <td colspan="2">No Imports added</td>
                                     </tr>
                                 }
                             </tbody>
@@ -291,13 +278,6 @@
                                         <td class="py-0 w-25">@declaration.Tooltip</td>
                                         <td class="py-0 w-25">@declaration.Function</td>
                                         <td class="py-0 w-50">@declaration.Editable</td>
-                                    </tr>
-                                }
-
-                                @if (!Payload.Body.Declarations.Any())
-                                {
-                                    <tr>
-                                        <td colspan="5">No placeholders added</td>
                                     </tr>
                                 }
                             </tbody>

@@ -91,9 +91,11 @@ main {
     border-top: 1px solid #d6d5d5;
     justify-content: flex-start;
     height: 3.37rem;
+    width: 100%;
+    max-height: 3.37rem;
     display: flex;
     align-items: center;
-    position: sticky;
+    position: fixed;
     bottom: 0px;
     padding: 0px 12px;
 }
