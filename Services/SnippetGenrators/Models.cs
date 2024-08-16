@@ -37,7 +37,7 @@ public class SnippetInputHeaderPayload
     public string Author { get; set; }
     public string Description { get; set; }
     public string HelpURL { get; set; }
-    public SnippetType SnipperType { get; set; }
+    public SnippetType SnipperType { get; set; } = SnippetType.Expansion;
     public string[] Keywords { get; set; }
     public string Shortcut { get; set; }
 
@@ -74,7 +74,7 @@ public class SnippetDeclarationInputPayload
 
 public class SnippetCodeInputPayload
 {
-    public string Language { get; set; }
+    public string Language { get; set; } = "csharp";
     public string Kind { get; set; } = "cData";
     public string Delimiter { get; set; } = "$";
     public string Code { get; set; }
@@ -83,6 +83,7 @@ public class SnippetCodeInputPayload
 
 public class SnippetInputBodyPayload
 {
+    public bool ShowMinimalUI { get; set; } = true;
     public bool ReferencesRequired { get; set; }
     public bool ImportsRequired { get; set; }
     public bool DeclarationsRequired { get; set; }
