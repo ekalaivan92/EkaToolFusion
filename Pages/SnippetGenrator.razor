@@ -382,7 +382,7 @@
             </div>
         </form>
     </div>
-    <div class="col-md-4 border rounded p-2">
+    <div class="col-md-4 d-flex flex-column border rounded p-2">
         <div class="row">
             <div class="col-md-12 mb-1">
                 <div class="">
@@ -404,18 +404,20 @@
                         </span>
                     </span>
                 </div>
-
             </div>
 
             <div class="col-md-12">
                 <hr class="opacity-25 my-2 bg-secondary" />
             </div>
+        </div>
 
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <textarea class="form-control" style="height: calc(100vh - 212px); resize: none;" disabled readonly
-                        resize="false" @bind="CodeSnippet" id="snippetPreview">
-                </textarea>
+        <div class="row d-flex flex-fill align-self-strech">
+            <div class="col-md-12 d-flex ">
+                <div class="form-floating d-flex flex-fill">
+                    <textarea class="form-control flex-fill" style="height: auto;" disabled readonly resize="false"
+                        @bind="CodeSnippet" id="snippetPreview">
+    </textarea>
+
                     <label for="snippetPreview">Generated Snippet Preview</label>
                 </div>
             </div>
