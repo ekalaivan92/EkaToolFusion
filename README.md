@@ -1,6 +1,9 @@
 # EkaToolFusion
 My customized tools for development designed with Blazor WebAssembly and .NET 8 to provide an intuitive interface. It is planed to have lot of tools, available tools and usage tips are documented in the [Wiki](https://github.com/ekalaivan92/EkaToolFusion/wiki#tools)
 
+## Visit the hosted service to use
+The running version of this project / blazor web assembly is hosted via github pages, [Visit Here](https://tools.ekalaivan.net/)
+
 ## Installation and Setup
 
 To run this project locally, ensure you have the following prerequisites:
