@@ -7,6 +7,33 @@
 <div class="row">
     <div class="col-md-8 border rounded p-2">
         <form method="post" @onsubmit="GenerateSnippet">
+            <div class="col-md-12">
+                <div class="row mb-2">
+                    <div class="col-md-4">
+                        <div class="">
+                            <label class="form-label w-100" for="preloadSelect">Preload Snippet Samples</label>
+                            <select class="form-control" id="preloadSelect" @bind:get="PreLoadSelected"
+                                @bind:set="(value) => { OnPreloadSelect(value); }">
+                                <option selected disabled hidden></option>
+                                @foreach (var snippetType in Enum.GetValues(typeof(PredefinedSnippetType)))
+                                {
+                                    <option value="@((int)snippetType)">@snippetType</option>
+                                }
+                            </select>
+                            <span class="tooltip-container">
+                                <i class="bi bi-lightbulb text-secondary"></i>
+                                <span class="tooltip">
+                                    <span class="header">Samples:</span>
+                                    This actually predefined snippets that can be loaded and downloaded for use. Also
+                                    you can
+                                    select a snippet and modify it to your need and use download and use it.
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <input type="hidden" @bind="Payload.Body.CodeBlock.Kind" />
             <div class="row g-1 gx-2">
                 <div class="col-md-12">
@@ -383,7 +410,7 @@
         </form>
     </div>
     <div class="col-md-4 d-flex flex-column border rounded p-2">
-        <div class="row">
+        @* <div class="row">
             <div class="col-md-12 mb-1">
                 <div class="">
                     <label class="form-label w-100" for="preloadSelect">Preload Snippet Samples</label>
@@ -409,14 +436,13 @@
             <div class="col-md-12">
                 <hr class="opacity-25 my-2 bg-secondary" />
             </div>
-        </div>
+        </div> *@
 
         <div class="row d-flex flex-fill align-self-strech">
             <div class="col-md-12 d-flex ">
                 <div class="form-floating d-flex flex-fill">
-                    <textarea class="form-control flex-fill" style="height: auto;" disabled readonly resize="false"
-                        @bind="CodeSnippet" id="snippetPreview">
-    </textarea>
+                    <textarea class="form-control flex-fill" style="height: auto; min-height:200px;" disabled readonly
+                        resize="false" @bind="CodeSnippet" id="snippetPreview"></textarea>
 
                     <label for="snippetPreview">Generated Snippet Preview</label>
                 </div>
