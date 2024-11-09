@@ -1,8 +1,11 @@
 ﻿@page "/snippet-generator"
 
+@using EkaToolFusion.Shared
 @using Services.SnippetGenrator.Models;
 
 <PageTitle>Eka - Advanced Visual Studio Snippet Generator</PageTitle>
+
+<Messages @ref="MessagesComponent" />
 
 <div class="row">
     <div class="col-md-8 border rounded p-2">

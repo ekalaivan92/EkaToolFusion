@@ -2,6 +2,7 @@ using System.Text;
 using EkaToolFusion.Services.SnippetGenrator.Models;
 using EkaToolFusion.Services.SnippetGenrators.Processors;
 using EkaToolFusion.Services.Utilities;
+using EkaToolFusion.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -17,6 +18,7 @@ public partial class SnippetGenrator : ComponentBase
     public SnippetReferenceInputPayload ReferencePayload { get; set; } = new();
     public SnippetImportInputPayload ImportPayload { get; set; } = new();
     public SnippetDeclarationInputPayload DeclarationPayload { get; set; } = new();
+    public Messages MessagesComponent { get; set; }
     public string CodeSnippet { get; set; }
     public int PreLoadSelected { get; set; }
     public bool CanDownload { get; set; } = false;
