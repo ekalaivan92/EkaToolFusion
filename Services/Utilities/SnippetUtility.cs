@@ -1,5 +1,8 @@
 using System.Text;
 using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Resolvers;
+using System.Xml.Serialization;
 using EkaToolFusion.Services.Extensions;
 using EkaToolFusion.Services.SnippetGenrator.Models;
 
@@ -133,4 +136,146 @@ public static class SnippetUtility
         return declarationsDoc.DocumentElement;
     }
 
+    public static SnippetInputPayload ParseSnippet(MemoryStream xmlStream)
+    {
+        var payload = new SnippetInputPayload() { Body = new() };
+        var xml = new XmlDocument();
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("ns", "http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet");
+
+        xmlStream.Position = 0;
+        xml.Load(xmlStream);
+
+        payload.Header = ParseHeader(xml.GetElement("//ns:Header", nsmgr), nsmgr);
+        payload.Body.References = ParseReferences(xml.GetElements("//ns:References", nsmgr), nsmgr);
+        payload.Body.Imports = ParseImports(xml.GetElements("//ns:Imports", nsmgr), nsmgr);
+        payload.Body.Declarations = ParseDeclarations(xml.GetElements("//ns:Declarations", nsmgr), nsmgr);
+
+        payload.Body.ReferencesRequired = payload.Body.References.Count() > 0;
+        payload.Body.ImportsRequired = payload.Body.Imports.Count() > 0;
+        payload.Body.DeclarationsRequired = payload.Body.Declarations.Count() > 0;
+
+        var codeBlockElement = xml.SelectSingleNode("//ns:Code", nsmgr);
+        payload.Body.CodeBlock = new SnippetCodeInputPayload
+        {
+            Code = codeBlockElement?.InnerText.Trim(),
+            Delimiter = codeBlockElement.GetAttributeValue("Delimiter"),
+            Language = codeBlockElement.GetAttributeValue("Language"),
+            Kind = codeBlockElement.GetAttributeValue("Kind"),
+        };
+
+        return payload;
+    }
+
+    private static SnippetInputHeaderPayload ParseHeader(XmlNode xmlNode, XmlNamespaceManager nsmgr)
+    {
+        Enum.TryParse(typeof(SnippetType), xmlNode.GetElement("//ns:SnippetTypes/ns:SnippetType", nsmgr)?.InnerText, out object snippetType);
+
+        var keyWords = new List<string>();
+        var keywordElements = xmlNode.GetElements("//ns:Keywords", nsmgr);
+
+        foreach (XmlNode keywordNode in keywordElements)
+        {
+            keyWords.Add(keywordNode.InnerText);
+        }
+
+        var payload = new SnippetInputHeaderPayload
+        {
+            Title = xmlNode.GetElement("//ns:Title", nsmgr)?.InnerText,
+            Author = xmlNode.GetElement("//ns:Author", nsmgr)?.InnerText ?? "EkaSnippetGenerator",
+            Description = xmlNode.GetElement("//ns:Description", nsmgr)?.InnerText,
+            HelpURL = xmlNode.GetElement("//ns:HelpURL", nsmgr)?.InnerText,
+            Shortcut = xmlNode.GetElement("//ns:Shortcut", nsmgr)?.InnerText,
+            SnipperType = (SnippetType)snippetType,
+            Keywords = [.. keyWords]
+        };
+
+        return payload;
+    }
+
+    private static IEnumerable<SnippetReferenceInputPayload> ParseReferences(XmlNodeList xmlNode, XmlNamespaceManager nsmgr)
+    {
+        var result = new List<SnippetReferenceInputPayload>();
+
+        if (xmlNode == null || xmlNode.Count == 0)
+        {
+            return result;
+        }
+
+        foreach (XmlNode refNode in xmlNode)
+        {
+            if (refNode == null || refNode.ChildNodes.Count == 0)
+            {
+                continue;
+            }
+
+            var refInputPayload = new SnippetReferenceInputPayload
+            {
+                Assembly = refNode.GetElement("//ns:Assembly", nsmgr)?.InnerText,
+                HelpURL = refNode.GetElement("//ns:Url", nsmgr)?.InnerText
+            };
+
+            result.Add(refInputPayload);
+        }
+
+        return result;
+    }
+
+    private static IEnumerable<SnippetImportInputPayload> ParseImports(XmlNodeList xmlNode, XmlNamespaceManager nsmgr)
+    {
+        var result = new List<SnippetImportInputPayload>();
+
+        if (xmlNode == null || xmlNode.Count == 0)
+        {
+            return result;
+        }
+
+        foreach (XmlNode refNode in xmlNode)
+        {
+            if (refNode == null || refNode.ChildNodes.Count == 0)
+            {
+                continue;
+            }
+
+            var refInputPayload = new SnippetImportInputPayload
+            {
+                Namespace = refNode.GetElement("//ns:Namespace", nsmgr)?.InnerText
+            };
+
+            result.Add(refInputPayload);
+        }
+
+        return result;
+    }
+
+    private static IEnumerable<SnippetDeclarationInputPayload> ParseDeclarations(XmlNodeList xmlNode, XmlNamespaceManager nsmgr)
+    {
+        var result = new List<SnippetDeclarationInputPayload>();
+
+        if (xmlNode == null || xmlNode.Count == 0)
+        {
+            return result;
+        }
+
+        foreach (XmlNode refNode in xmlNode)
+        {
+            if (refNode == null || refNode.ChildNodes.Count == 0)
+            {
+                continue;
+            }
+
+            var refInputPayload = new SnippetDeclarationInputPayload
+            {
+                ID = refNode.GetElement("//ns:Literal/ns:ID", nsmgr)?.InnerText,
+                Default = refNode.GetElement("//ns:Literal/ns:Default", nsmgr)?.InnerText,
+                Function = refNode.GetElement("//ns:Literal/ns:Function", nsmgr)?.InnerText,
+                Tooltip = refNode.GetElement("//ns:Literal/ns:Tooltip", nsmgr)?.InnerText,
+                Editable = bool.Parse(refNode.GetAttributeValue("Editable") ?? "false")
+            };
+
+            result.Add(refInputPayload);
+        }
+
+        return result;
+    }
 }

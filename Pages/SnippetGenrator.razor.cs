@@ -1,9 +1,11 @@
+using System.Runtime.CompilerServices;
 using System.Text;
 using EkaToolFusion.Services.SnippetGenrator.Models;
 using EkaToolFusion.Services.SnippetGenrators.Processors;
 using EkaToolFusion.Services.Utilities;
 using EkaToolFusion.Shared;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 
 namespace EkaToolFusion.Pages;
@@ -102,6 +104,24 @@ public partial class SnippetGenrator : ComponentBase
         await JS.InvokeVoidAsync("downloadSnippetFile", fileName, streamRef);
 
         ResetInputs();
+    }
+
+    private async Task OnParseFileSelected(InputFileChangeEventArgs e)
+    {
+        var selectedFile = e
+            .GetMultipleFiles(1)
+            .FirstOrDefault();
+        
+        if(selectedFile.Size > 102400)
+        {
+            MessagesComponent.ShowError($"File size should not be more than 100kb");
+            return;
+        }
+        
+        using var stream = selectedFile.OpenReadStream(511000);
+        using var mStream = new MemoryStream();
+        await stream.CopyToAsync(mStream);
+        Payload = SnippetUtility.ParseSnippet(mStream);
     }
 
     private void ResetInputs()

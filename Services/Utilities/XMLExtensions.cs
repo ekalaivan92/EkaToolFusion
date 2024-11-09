@@ -33,6 +33,17 @@ public static class XMLExtensions
         return xmlDoc.AppendChild(title);
     }
 
+    public static XmlNode GetElement(this XmlNode xmlDoc, string path, XmlNamespaceManager nsmgr)
+    {
+        var list = GetElements(xmlDoc, path, nsmgr)[0];
+        return list.FirstChild;
+    }
+
+    public static XmlNodeList GetElements(this XmlNode xmlDoc, string path, XmlNamespaceManager nsmgr)
+    {
+        return xmlDoc.SelectNodes(path, nsmgr);
+    }
+
     public static XmlNode AddAttribute(this XmlNode xmlDoc, string attributeName, string value)
     {
         var attr = xmlDoc.OwnerDocument.CreateAttribute(attributeName);
@@ -40,6 +51,11 @@ public static class XMLExtensions
         xmlDoc.Attributes.Append(attr);
 
         return xmlDoc;
+    }
+
+    public static string GetAttributeValue(this XmlNode xmlDoc, string attributeName)
+    {
+        return xmlDoc.Attributes[attributeName]?.Value;
     }
 
     public static string Format(this XmlDocument doc)
