@@ -45,7 +45,10 @@ public partial class SnippetGenrator : ComponentBase
     {
         DeclarationPayload.ID = DeclarationPayload.ID.Trim();
 
-        var existingEntry = Payload.Body.Declarations.FirstOrDefault(x => x.ID.Equals(DeclarationPayload.ID, StringComparison.InvariantCultureIgnoreCase));
+        var existingEntry = Payload.Body
+            .Declarations
+            .FirstOrDefault(x => x.ID.Equals(DeclarationPayload.ID, StringComparison.InvariantCultureIgnoreCase));
+        
         if (existingEntry == null)
         {
             Payload.Body.Declarations = Payload.Body.Declarations.Append(DeclarationPayload);
@@ -85,7 +88,10 @@ public partial class SnippetGenrator : ComponentBase
     {
         ImportPayload.Namespace = ImportPayload.Namespace.Trim();
 
-        var hasEntry = Payload.Body.Imports.Any(x => x.Namespace.Equals(ImportPayload.Namespace, StringComparison.InvariantCultureIgnoreCase));
+        var hasEntry = Payload.Body
+            .Imports
+            .Any(x => x.Namespace.Equals(ImportPayload.Namespace, StringComparison.InvariantCultureIgnoreCase));
+        
         if (!hasEntry)
         {
             Payload.Body.Imports = Payload.Body.Imports.Append(ImportPayload);
