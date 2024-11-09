@@ -45,10 +45,17 @@ public partial class SnippetGenrator : ComponentBase
     {
         DeclarationPayload.ID = DeclarationPayload.ID.Trim();
 
-        var hasEntry = Payload.Body.Declarations.Any(x => x.ID.Equals(DeclarationPayload.ID, StringComparison.InvariantCultureIgnoreCase));
-        if (!hasEntry)
+        var existingEntry = Payload.Body.Declarations.FirstOrDefault(x => x.ID.Equals(DeclarationPayload.ID, StringComparison.InvariantCultureIgnoreCase));
+        if (existingEntry == null)
         {
             Payload.Body.Declarations = Payload.Body.Declarations.Append(DeclarationPayload);
+        }
+        else
+        {
+            existingEntry.Default = DeclarationPayload.Default;
+            existingEntry.Editable = DeclarationPayload.Editable;
+            existingEntry.Function = DeclarationPayload.Function;
+            existingEntry.Tooltip = DeclarationPayload.Tooltip;
         }
 
         DeclarationPayload = new();
@@ -58,10 +65,17 @@ public partial class SnippetGenrator : ComponentBase
     {
         ReferencePayload.Assembly = ReferencePayload.Assembly.Trim();
 
-        var hasEntry = Payload.Body.References.Any(x => x.Assembly.Equals(ReferencePayload.Assembly, StringComparison.InvariantCultureIgnoreCase));
-        if (!hasEntry)
+        var existingReference = Payload.Body
+            .References
+            .FirstOrDefault(x => x.Assembly.Equals(ReferencePayload.Assembly, StringComparison.InvariantCultureIgnoreCase));
+        
+        if (existingReference == null)
         {
             Payload.Body.References = Payload.Body.References.Append(ReferencePayload);
+        }
+        else
+        {
+            existingReference.HelpURL = ReferencePayload.HelpURL;
         }
 
         ReferencePayload = new();
